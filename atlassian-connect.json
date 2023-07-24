@@ -1,0 +1,109 @@
+{
+  "key": "latest-project",
+  "name": "Ziad app",
+  "description": "My very first app",
+  "baseUrl": "https://fceb-197-145-157-189.ngrok-free.app",
+  "authentication": {
+    "type": "jwt"
+  },
+  "lifecycle": {
+    "installed": "/installed",
+    "enabled": "/enabled",
+    "disabled": "/disabled",
+    "uninstalled": "/uninstalled"
+  },
+  "scopes": [
+    "read",
+    "write"
+  ],
+  "modules": {
+    "generalPages": [
+      {
+        "key": "hello-world-page-jira",
+        "location": "system.top.navigation.bar",
+        "name": {
+          "value": "Hello World"
+        },
+        "url": "/hello-world"
+      }
+    ],
+    "jiraTimeTrackingProviders": [
+      {
+        "name": {
+          "value": "REACT TIME TRACKING"
+        },
+        "key": "react-time-tracking",
+        "modules": {
+          "configurePage": {
+            "key": "time-tracking-config"
+          }
+        }
+      }
+    ],
+    "adminPages": [
+      {
+        "url": "/settings",
+        "key": "TeamleadTaskWebItems",
+        "location": "jira.project.sidebar.navigation",
+        "name": {
+          "value": "Settings TEST"
+        }
+      }
+    ],
+    "dialogs": [
+      {
+        "url": "/web-item",
+        "options": {
+          // "size" bellow defines how the size of the dialog clicked from ANY BUTTON EXCEPT THE "Saisie de temps" BUTTON
+          "size": "small",
+          "header": {
+            "value": "HHHH"
+          }
+        },
+        "key": "dialog-example"
+      }
+    ],
+    "webItems": [
+      {
+        "location": "jira.issue.tools",
+        "weight": 200,
+        "url": "/web-item",
+        "styleClasses": [
+          "webitem",
+          "system-present-webitem"
+        ],
+        "conditions": [
+          {
+            "condition": "addon_time_tracking_provider_enabled",
+            "params": {
+              "addonKey": "latest-project",
+              "moduleKey": "react-time-tracking"
+            }
+          }
+        ],
+        "target": {
+          "type": "dialog",
+          "options": {
+//            "height": "400px",
+//            "width": "700px",
+            // "size" bellow defines how the size of the dialog clicked from THE "Saisie du temps" BUTTON (webItem)
+            "size": "x-large",
+            "key": "dialog-example"
+          }
+        },
+        "tooltip": {
+          "value": "Example tooltip"
+        },
+        "icon": {
+          "width": 16,
+          "height": 16,
+          "url": "/maps/icon.png"
+        },
+        "name": {
+          "value": "Saisie du temps"
+        },
+        "key": "web-item-example"
+      }
+    ]
+  }
+}
